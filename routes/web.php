@@ -31,3 +31,4 @@ Route::get('product/datatableTrash','Master\ProductController@datatableTrash')->
 
 Route::post('product/undoTrash/{id}', 'Master\ProductController@undoTrash')->name('product/undoTrash/{id}');
 
+Route::resource('transaction/purchase-order','Transaction\PurchaseController');
