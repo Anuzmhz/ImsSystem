@@ -62,19 +62,27 @@
                                         <div class="col-md-12">
                                                 <label for="id_ven" class="col-sm-6 col-form-label">Supplier Name</label>
                                         </div>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="id_ven" id="id_ven" placeholder="Supplier Name">
+                                            <div class="col-sm-8">
+                                                <input type="hidden" readonly="true" class="form-control" name="id_ven" id="id_ven" >
+                                                <input type="text" readonly="true" class="form-control" name="name_ven" id="name_ven" placeholder="Supplier Name">
                                             </div>
+                                        <div class="col-sm-4">
+                                            <a href="" class="btn btn-info" title="Vendor" data-toggle="modal" data-target="#modal-info">Supplier</a>
+                                         </div>
                                     </div>
                                     <div class="col-md-12 field-wrapper">
                                     <div class="form-group row">
                                         <div class="col-md-12">
                                             <label for="id_raw_product" class="col-sm-4 col-form-label">Product Name</label>
                                         </div>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="id_raw_product[]" id="id_raw_product_1" placeholder="Product Name">
+                                            <div class="col-sm-3">
+                                                <input type="hidden" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_1" placeholder="Product Name">
+                                                <input type="text" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_1" placeholder="Product Name">
                                             </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-2">
+                                            <a href="" class="btn btn-info" title="Product" data-toggle="modal" data-target="#modal-info">Product</a>
+                                        </div>
+                                        <div class="col-sm-2">
                                             <input type="text" class="form-control" name="price[]" id="price_1" placeholder="Price">
                                         </div>
                                         <div class="col-sm-3">
@@ -110,13 +118,17 @@
             $(addButton).click(function(){
                 X++;
                 $(wrapper).append('<div class="form-group row">'+
-                    '<div class="col-md-12">'+
-                    '<label for="id_raw_product" class="col-sm-4 col-form-label">Product Name</label>'+
+                //     '<div class="col-md-12">'+
+                //     '<label for="id_raw_product" class="col-sm-4 col-form-label">Product Name</label>'+
+                // '</div>'+
+                '<div class="col-sm-3">'+
+                    '<input type="hidden" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_'+X+'" placeholder="Product Name">'+
+                    '<input type="text" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_'+X+'" placeholder="Product Name">'+
                 '</div>'+
-                '<div class="col-sm-4">'+
-                    '<input type="text" class="form-control" name="id_raw_product[]" id="id_raw_product_'+X+'" placeholder="Product Name">'+
-                   '</div>'+
-                    '<div class="col-sm-3">'+
+                    '<div class="col-sm-2">'+
+                    '<a href="" class="btn btn-info" title="Product" data-toggle="modal" data-target="#modal-info">Product</a>'+
+                    '</div>'+
+                    '<div class="col-sm-2">'+
                     '<input type="text" class="form-control" name="price[]" id="price_'+X+'" placeholder="Price">'+
                     '</div>'+
                     '<div class="col-sm-3">'+
