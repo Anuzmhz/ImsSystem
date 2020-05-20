@@ -16,7 +16,7 @@ class CreatePurchaseHTable extends Migration
         Schema::create('purchase_h', function (Blueprint $table) {
             $table->id();
             $table->string('no_invoice');
-            $table->integer('total');
+            $table->integer('total')->nullable();
             $table->integer('id_ven');
             $table->integer('active');
             $table->enum('status',['order', 'received']);

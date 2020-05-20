@@ -67,7 +67,7 @@
                                                 <input type="text" readonly="true" class="form-control" name="name_ven" id="name_ven" placeholder="Supplier Name">
                                             </div>
                                         <div class="col-sm-4">
-                                            <a href="" class="btn btn-info" title="Vendor" data-toggle="modal" data-target="#modal-info">Supplier</a>
+                                            <a href="/transaction/purchase-order/vendor/popup_media" class="btn btn-info" title="Vendor" data-toggle="modal" data-target="#modal-default">Supplier</a>
                                          </div>
                                     </div>
                                     <div class="col-md-12 field-wrapper">
@@ -77,10 +77,10 @@
                                         </div>
                                             <div class="col-sm-3">
                                                 <input type="hidden" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_1" placeholder="Product Name">
-                                                <input type="text" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_1" placeholder="Product Name">
+                                                <input type="text" readonly="true" class="form-control" name="name_raw_product[]" id="name_raw_product_1" placeholder="Product Name">
                                             </div>
                                         <div class="col-sm-2">
-                                            <a href="" class="btn btn-info" title="Product" data-toggle="modal" data-target="#modal-info">Product</a>
+                                            <a href="/transaction/purchase-order/product/popup_media/1" class="btn btn-info" title="Product" data-toggle="modal" data-target="#modal-default">Product</a>
                                         </div>
                                         <div class="col-sm-2">
                                             <input type="text" class="form-control" name="price[]" id="price_1" placeholder="Price">
@@ -106,10 +106,30 @@
         </div>
         </div>
     </section>
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Default Modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
 @endsection
 <!-- Date Script -->
 @push('js')
+
     <script>
         $(document).ready(function(){
             var addButton = $('.add_Button');
@@ -123,10 +143,10 @@
                 // '</div>'+
                 '<div class="col-sm-3">'+
                     '<input type="hidden" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_'+X+'" placeholder="Product Name">'+
-                    '<input type="text" readonly="true" class="form-control" name="id_raw_product[]" id="id_raw_product_'+X+'" placeholder="Product Name">'+
+                    '<input type="text" readonly="true" class="form-control" name="name_raw_product[]" id="name_raw_product_'+X+'" placeholder="Product Name">'+
                 '</div>'+
                     '<div class="col-sm-2">'+
-                    '<a href="" class="btn btn-info" title="Product" data-toggle="modal" data-target="#modal-info">Product</a>'+
+                    '<a href="/transaction/purchase-order/product/popup_media/'+X+'" class="btn btn-info" title="Product" data-toggle="modal" data-target="#modal-default">Product</a>'+
                     '</div>'+
                     '<div class="col-sm-2">'+
                     '<input type="text" class="form-control" name="price[]" id="price_'+X+'" placeholder="Price">'+
@@ -159,5 +179,11 @@
 
     })
 </script>
+    <script>
+        $('#modal-default').bind("show.bs.modal", function(e){
+            var link = $(e.relatedTarget);
+            $(this).find(".modal-body").load(link.attr("href"));
+        });
+    </script>
     @endpush
 

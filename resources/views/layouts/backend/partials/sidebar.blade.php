@@ -61,12 +61,11 @@
                         <p>
                             Transaction
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href=" {{route('purchase-order.index')}}" class="nav-link">
+                            <a href=" {{route('purchase-order.index')}}" class="nav-link {{ Request::is('transaction/purchase-order*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Purchase Order</p>
                             </a>

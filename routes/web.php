@@ -32,3 +32,11 @@ Route::get('product/datatableTrash','Master\ProductController@datatableTrash')->
 Route::post('product/undoTrash/{id}', 'Master\ProductController@undoTrash')->name('product/undoTrash/{id}');
 
 Route::resource('transaction/purchase-order','Transaction\PurchaseController');
+
+Route::get('transaction/purchase-order/vendor/popup_media','Transaction\PurchaseController@popup_media_vendor')->name('transaction/purchase-order/vendor/popup_media');
+Route::get('transaction/purchase-order/product/popup_media/{id_count}','Transaction\PurchaseController@popup_media_product')->name('transaction/purchase-order/product/popup_media/{id_count}');
+Route::get('browse-product/datatable','Master\ProductController@datatable_product')->name('browse-product/datatable');
+Route::get('browse-vendor/datatable','Master\VendorController@datatable_vendor')->name('browse-vendor/datatable');
+
+Route::get('purchase-order/datatable','Transaction\PurchaseController@datatable')->name('purchase-order/datatable');
+

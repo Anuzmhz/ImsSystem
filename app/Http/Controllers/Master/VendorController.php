@@ -161,4 +161,20 @@ class VendorController extends Controller
             ->editColumn('id', 'ID:{{$id}}')
             ->make(true);
     }
+    public function datatable_vendor(){
+        $data = Vendor::select('vendors.*')->where('vendors.active', '!=', 2);
+
+        return Datatables::of($data)
+            ->editColumn('address', function($data){
+                return str_replace("\r\n",',', $data->address);
+            })
+        ->make(true);
+    }
 }
+/*
+ *  public function datatable_product(){
+        $data = Product::select('products.*')->where('products.active','!=', 2);
+        return Datatables::of($data)->make(true);
+    }
+ *
+ */

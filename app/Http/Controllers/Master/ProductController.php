@@ -222,4 +222,9 @@ class ProductController extends Controller
             return new JsonResponse(["status" => false]);
         }
     }
+
+    public function datatable_product(){
+        $data = Product::select('products.*')->where('products.active','!=', 2);
+        return Datatables::of($data)->make(true);
+    }
 }

@@ -7,7 +7,6 @@
     <!--Date -->
     <link rel="stylesheet" href="{{asset('asset/plugins/jquery-ui/jquery-ui.css')}}">
 
-
 @endpush
 @section('content')
 
@@ -44,9 +43,9 @@
                                 <label for="status" class="col-sm-4 col-form-label">Status</label>
                                 <div class="col-sm-8">
                                     <select class= "form-control" name="status" id="status">
-                                        <option value="0">All</option>
-                                        <option value="order">Order</option>
-                                        <option value="received">Received</option>
+                                        <option value="0" {{ $status == "0" ? 'selected' : ''}}>All</option>
+                                        <option value="order" {{ $status == "order" ? 'selected' : ''}}>Order</option>
+                                        <option value="received" {{ $status == "received" ? 'selected' : ''}}>Received</option>
                                     </select>
                                 </div>
                             </div>
@@ -55,13 +54,13 @@
                             <div class="col-md-4">
                                 <label for="startDate" class="col-sm-4 col-form-label">Start Date</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="startDate" id="startDate">
+                                    <input type="text" class="form-control" name="startDate" id="startDate" value="{{ $startDate  }} ">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <label for="endDate" class="col-sm-4 col-form-label">End Date</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="endDate" id="endDate">
+                                    <input type="text" class="form-control" name="endDate" id="endDate" value="{{ $endDate  }} ">
                                 </div>
                             </div>
                         </div>
@@ -69,7 +68,7 @@
                             <div class="col-md-6">
                         <div class="form-group clearfix">
                             <div class="icheck-primary d-inline class-sm-8">
-                                <input type="checkbox" id="show-all" name="mode" value="all">
+                                <input type="checkbox" id="show-all" name="mode" value="all" {{$mode=="all" ? 'checked' : ''}}>
                                 <label for="show-all">Show All</label>
                             </div>
                         </div>
@@ -83,20 +82,20 @@
                         <table id="example1" class="table table-bordered table-striped" style="width:100%">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Contact Person</th>
-                                <th>Phone No.</th>
+                                <th>Invoice No</th>
+                                <th>Date</th>
+                                <th>Vendor Name</th>
+                                <th>Total Price</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Contact Person</th>
-                                <th>Phone No.</th>
+                                <th>Invoice No</th>
+                                <th>Date</th>
+                                <th>Vendor Name</th>
+                                <th>Total Price</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -119,6 +118,11 @@
     <script src="{{asset('asset/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
     <script>
         $(function () {
+            $.ajaxSetup({
+                header:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $("#example1").DataTable({
                 responsive:true,
                 processing:true,
@@ -126,21 +130,21 @@
                 stateSave:false,
                 scrollY:true,
                 scrollX:true,
-                ajax:"",
+                ajax:"{!! url('purchase-order/datatable?status='.$status.'&startDat='.$startDate.'&endDate='.$endDate.'$mode='.$mode) !!}",
                 order:[0,'desc'],
                 columns:[
+                    {data:'no_invoice',name:'no_invoice'},
+                    {data:'date',name:'date'},
                     {data:'name',name:'name'},
-                    {data:'address',name:'address'},
-                    {data:'cp',name:'cp'},
-                    {data:'phone', name:'phone'},
-                    {data:'active',
+                    {data:'total', name:'total'},
+                    {data:'status',
                         render:function(data){
-                            if(data=='1'){
-                                return '<span class="badge badge-success">Active</span>';
+                            if(data=='order'){
+                                return '<span class="badge badge-success">Order</span>';
 
                             }
-                            if(data=='0'){
-                                return '<span class="badge badge-warning">Inactive</span>';
+                            if(data=='received'){
+                                return '<span class="badge badge-warning">Received</span>';
 
                             }
                         },
@@ -151,8 +155,6 @@
 
         });
     </script>
-
-    <!-- Date Script -->
     <script>
         $(function(){
             $('#startDate').datepicker({
@@ -165,5 +167,30 @@
             });
         })
     </script>
+
+    <script>
+        function deleteData(dt){
+            if (confirm("Are you sure you want to delete this data ?")){
+                $.ajax({
+                    type:'DELETE',
+                    url:$(dt).data("url"),
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success:function(response){
+                        if(response.status){
+                            location.reload();
+                        }
+                    },
+                    error:function(response){
+                        console.log(response);
+                    }
+                });
+
+            }
+            return false;
+        }
+    </script>
+
 
 @endpush
