@@ -97,6 +97,24 @@
         </div>
     </div>
     </section>
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Default Modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <!-- /.content -->
 @endsection
 @push('js')
@@ -217,6 +235,13 @@
             $($.fn.dataTable.tables(true)).DataTable()
                 .columns.adjust();
         });
+        });
+    </script>
+
+    <script>
+        $('#modal-default').bind("show.bs.modal", function(e){
+            var link = $(e.relatedTarget);
+            $(this).find(".modal-body").load(link.attr("href"));
         });
     </script>
 }

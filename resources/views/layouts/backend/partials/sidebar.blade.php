@@ -71,9 +71,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/boxed.html" class="nav-link">
+                            <a href="{{route('sales.index')}}" class="nav-link {{ Request::is('transaction/sales*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Boxed</p>
+                                <p>Sales</p>
                             </a>
                         </li>
                         <li class="nav-item">

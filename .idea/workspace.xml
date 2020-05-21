@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa05fb94-a660-4804-8fad-3478c487d83c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/update.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/view_product.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/view_vendor.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Product/history.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/view.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/update.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/view.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/view_product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Master/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Master/VendorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/VendorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Transaction/PurchaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Transaction/PurchaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Purchase/PurchaseD.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Purchase/PurchaseD.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_16_053117_create_purchase_h_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_16_053117_create_purchase_h_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Transaction/Purchase/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Product/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Transaction/Purchase/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/backend/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/backend/partials/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -187,7 +188,8 @@
       <workItem from="1589691906913" duration="12772000" />
       <workItem from="1589783706321" duration="10126000" />
       <workItem from="1589854505202" duration="9665000" />
-      <workItem from="1589950125363" duration="9117000" />
+      <workItem from="1589950125363" duration="12380000" />
+      <workItem from="1590025715465" duration="22025000" />
     </task>
     <servers />
   </component>
@@ -206,5 +208,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/Transaction/Purchase/view.blade.php</url>
+          <line>24</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

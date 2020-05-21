@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Transaction;
 use App\Http\Controllers\Controller;
 use App\Model\Purchase\PurchaseD;
 use App\Model\Purchase\PurchaseH;
+use App\Model\Transaction\Stock;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use TJGazel\Toastr\Facades\Toastr;
 use Yajra\DataTables\DataTables;
+use App\Model\Master\Product;
+
 
 
 class PurchaseController extends Controller
@@ -24,6 +27,7 @@ class PurchaseController extends Controller
         $status = "0";
         $startDate = "01" . "-" . date('m-Y');
         $endDate = date('d-m-Y');
+        $mode ="all";
         if ((isset($_GET["startDate"])) && (($_GET["startDate"]) !== '')) {
             $startDate = $_GET["startDate"];
         }
@@ -33,10 +37,10 @@ class PurchaseController extends Controller
         if ((isset($_GET["status"])) && (($_GET["status"]) !== '')) {
             $status = $_GET["status"];
         }
-        if (!isset($_GET['mode'])) {
+        if (!isset($_GET["mode"])) {
             $mode = "limited";
         }
-        return view('Transaction.Purchase.index', compact('startDate', 'endDate', 'status', 'mode'));
+        return view('Transaction.Purchase.index', compact('startDate','endDate', 'status', 'mode'));
     }
 
     /**
@@ -96,7 +100,11 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = PurchaseH::with(['user_modify','vendor'])->where('id',$id)->get();
+        if($data->count()>0){
+            $detail = PurchaseD::with('product')->where('id_purchase','=',$data[0]->id)->orderBy('id','ASC')->get();
+            return view('Transaction.Purchase.view',compact('data','detail'));
+        }
     }
 
     /**
@@ -136,7 +144,7 @@ class PurchaseController extends Controller
         if ($data->save()) {
             $delete = PurchaseD::where('id_purchase','=',$id)->delete();
             if (isset($_POST['id_raw_product'])) {
-                foreach ($_POST['id_raw_product'] as $key => $id_raw_product) ;
+              foreach ($_POST['id_raw_product'] as $key => $id_raw_product):
                 $detail = new PurchaseD();
                 $detail->id_purchase = $id;
                 $detail->id_product = $id_raw_product;
@@ -144,6 +152,7 @@ class PurchaseController extends Controller
                 $detail->price = $_POST['price'][$key];
                 $total = $total + ($detail->total * $detail->price);
                 $detail->save();
+               endforeach;
             }
             $data = PurchaseH::find($id);
             $data->total = $total;
@@ -239,6 +248,8 @@ class PurchaseController extends Controller
                   $delete = "<button data-url='".$url."' onclick='deleteData(this)' class='btn btn-action btn-danger' title='Delete'><i class='nav-icon fas fa-trash-alt'></i></button>";
 
                   return $view."".$edit.""."".$delete."".$receive;
+              }else{
+                  return $view;
               }
             })
             ->editColumn('date', function($data){
@@ -249,4 +260,32 @@ class PurchaseController extends Controller
             })
             ->make(true);
 }
+            public function received(Request $request, $id)
+            {
+                $dataH = PurchaseH::find($id);
+                $data = PurchaseD::where('id_purchase', '=', $id)->orderBy('id', 'ASC')->get();
+                foreach ($data as $data) {
+                    $detail = new Stock();
+                    $detail->id_product = $data->id_product;
+                    $detail->total = $data->total;
+                    $detail->information = $dataH->invoice_no;
+                    $detail->type = "buy";
+                    $detail->save();
+
+                    $detail = Product::find($data->id_product);
+                    $detail->purchase_price = $data->price;
+                    $detail->stock_total = $detail->stock_total + $data->total;
+                    $detail->save();
+                }
+                $data = PurchaseH::find($id);
+                $data->status = 'received';
+                $data->user_modified = Auth::user()->id;
+                if ($data->save()) {
+                    Toastr::success('Product Received Successfully', 'Success');
+                    return new JsonResponse(["status" => true]);
+                } else {
+                    Toastr::error('Product Cannot be Received Successfully', 'Error');
+                    return new JsonResponse(["status" => false]);
+                }
+            }
 }

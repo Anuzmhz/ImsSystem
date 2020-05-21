@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use App\Model\Master\Product;
+use App\Model\Purchase\PurchaseD;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -163,7 +164,7 @@ class ProductController extends Controller
                 $view = "<a class = 'btn btn-action btn-primary' href='" . $url . "' title='View'><i class='nav-icon fas fa-eye'></i></a>";
                 $edit = "<a class = 'btn btn-action btn-warning' href='" . $url_edit . "'title='Edit'><i class='nav-icon fas fa-edit'></i></a>";
                 $delete = "<button data-url='" . $url . "' onclick='deleteData(this)' class='btn btn-action btn-danger' title='Delete'><i class='nav-icon fas fa-trash-alt'></i></button>";
-                $history = "<a class = 'btn btn-action btn-warning' href='" . $url_history . "' title='History'>Purchase Detail</a>";
+                $history = "<a class = 'btn btn-action btn-warning' href='" . $url_history . "' title='History' data-toggle='modal' data-target='#modal-default'>Purchase Detail</a>";
 
                 return $view . "" . $edit . "" . $delete . "" . $history;
             })
@@ -226,5 +227,10 @@ class ProductController extends Controller
     public function datatable_product(){
         $data = Product::select('products.*')->where('products.active','!=', 2);
         return Datatables::of($data)->make(true);
+    }
+
+    public function history($id){
+        $datas = PurchaseD::with(['purchase'])->where('id_product',$id)->orderBy('id','DESC')->limit(5)->get();
+            return view('Product.history',['datas'=>$datas]);
     }
 }

@@ -112,6 +112,7 @@
     </section>
     <!-- /.content -->
 @endsection
+
 @push('js')
     <!-- DataTables -->
     <script src="{{asset('asset/plugins/datatables/jquery.dataTables.js')}}"></script>
@@ -190,6 +191,29 @@
             }
             return false;
         }
+
+        function received(dt){
+            if (confirm("Are you sure you want to receive this product ?")){
+                $.ajax({
+                    type:'post',
+                    url:$(dt).data("url"),
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success:function(response){
+                        if(response.status){
+                            location.reload();
+                        }
+                    },
+                    error:function(response){
+                        console.log(response);
+                    }
+                });
+
+            }
+            return false;
+        }
+
     </script>
 
 

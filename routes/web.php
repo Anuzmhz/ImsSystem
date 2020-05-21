@@ -30,6 +30,7 @@ Route::get('product/datatable','Master\ProductController@datatable')->name('prod
 Route::get('product/datatableTrash','Master\ProductController@datatableTrash')->name('product/datatableTrash');
 
 Route::post('product/undoTrash/{id}', 'Master\ProductController@undoTrash')->name('product/undoTrash/{id}');
+Route::get('master/product/history/{id}','Master\ProductController@history')->name('master/product/history/{id}');
 
 Route::resource('transaction/purchase-order','Transaction\PurchaseController');
 
@@ -39,4 +40,7 @@ Route::get('browse-product/datatable','Master\ProductController@datatable_produc
 Route::get('browse-vendor/datatable','Master\VendorController@datatable_vendor')->name('browse-vendor/datatable');
 
 Route::get('purchase-order/datatable','Transaction\PurchaseController@datatable')->name('purchase-order/datatable');
+Route::post('transaction/purchase-order/receive/{id}','Transaction\PurchaseController@received')->name('transaction/purchase-order/receive/{id}');
 
+Route::resource('transaction/sales','Transaction\SaleController');
+Route::get('transaction/sales/product/popup_media/{id_count}','Transaction\SaleController@popup_media_product')->name('transaction/sales/product/popup_media/{id_count}');
