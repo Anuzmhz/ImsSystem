@@ -10,6 +10,7 @@ use App\Model\Transaction\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use TJGazel\Toastr\Facades\Toastr;
+use Yajra\DataTables\Facades\DataTables;
 
 class SaleController extends Controller
 {
@@ -94,7 +95,11 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = SalesH::with(['user_modify'])->where('id',$id)->get();
+        if($data->count()>0){
+            $detail = SalesD::with('product')->where('id_sales','=',$data[0]->id)->orderBy('id','ASC')->get();
+            return view('Transaction.Sales.view',compact('data','detail'));
+        }
     }
 
     /**
@@ -135,4 +140,27 @@ class SaleController extends Controller
         return view('Transaction.Sales.view_product')->with('id_count', $id_count);
     }
 
+    public function datatable(){
+        $data = SalesH::select('sales_h.*')->where('sales_h.active','!=',0);
+        return DataTables::of($data)
+            ->addColumn('action',function($data){
+                $url = url('transaction/sales/'.$data->id);
+                $view = "<a class='btn btn-action btn-primary' href='".$url."' title='View'><i class='nav-icon fas fa-eye'></i></a>";
+                return $view;
+            })
+            ->editColumn('date',function($data){
+                return date('d-m-Y',strtotime($data->date));
+            })
+            ->editColumn('total',function($data){
+                return number_format($data->total,0,'.',',');
+            })
+            ->make(true);
+    }
+        public function print($id){
+            $data = SalesH::with(['user_modify'])->where('id',$id)->get();
+            if($data ->count() > 0){
+                $detail = SalesD::with('product')->where('id_sales','=',$data[0]->id)->orderBy('id','ASC')->get();
+                return view('Transaction.Sales.print',compact('data','detail'));
+            }
+        }
 }

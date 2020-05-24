@@ -39,8 +39,18 @@ Route::get('transaction/purchase-order/product/popup_media/{id_count}','Transact
 Route::get('browse-product/datatable','Master\ProductController@datatable_product')->name('browse-product/datatable');
 Route::get('browse-vendor/datatable','Master\VendorController@datatable_vendor')->name('browse-vendor/datatable');
 
+
 Route::get('purchase-order/datatable','Transaction\PurchaseController@datatable')->name('purchase-order/datatable');
 Route::post('transaction/purchase-order/receive/{id}','Transaction\PurchaseController@received')->name('transaction/purchase-order/receive/{id}');
 
 Route::resource('transaction/sales','Transaction\SaleController');
 Route::get('transaction/sales/product/popup_media/{id_count}','Transaction\SaleController@popup_media_product')->name('transaction/sales/product/popup_media/{id_count}');
+
+Route::get('sales/datatable','Transaction\SaleController@datatable')->name('sales/datatable');
+
+Route::get('transaction/sales/print/{id}','Transaction\SaleController@print')->name('transaction/sales/print/{id}');
+
+Route::get('transaction/stock','Transaction\StockController@index')->name('transaction/stock');
+Route::get('transaction/stock/product/popup_media', 'Transaction\StockController@popup_media_product')->name('');
+Route::post('transaction/stock','Transaction\StockController@update')->name('transaction/stock');
+Route::get('stock/report','Transaction\StockController@report')->name('stock/report');

@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fa05fb94-a660-4804-8fad-3478c487d83c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/Product/history.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/view.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/update.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/view.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/view_product.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/print.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Stock/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Stock/report.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Transaction/Stock/view_product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Master/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Master/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Transaction/PurchaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Transaction/PurchaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Transaction/SaleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Transaction/SaleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Product/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Transaction/Purchase/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Transaction/Purchase/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Transaction/Sales/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Transaction/Sales/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Transaction/Sales/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/backend/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/backend/partials/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -189,7 +188,10 @@
       <workItem from="1589783706321" duration="10126000" />
       <workItem from="1589854505202" duration="9665000" />
       <workItem from="1589950125363" duration="12380000" />
-      <workItem from="1590025715465" duration="22025000" />
+      <workItem from="1590025715465" duration="22277000" />
+      <workItem from="1590106123243" duration="12049000" />
+      <workItem from="1590238884251" duration="212000" />
+      <workItem from="1590279235609" duration="3778000" />
     </task>
     <servers />
   </component>
@@ -216,6 +218,11 @@
           <url>file://$PROJECT_DIR$/resources/views/Transaction/Purchase/view.blade.php</url>
           <line>24</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/home.blade.php</url>
+          <line>22</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
